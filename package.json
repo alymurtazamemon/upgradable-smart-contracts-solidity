@@ -5,6 +5,7 @@
     "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@^0.3.0-beta.13",
     "@openzeppelin/contracts-upgradeable": "^4.8.2",
     "@openzeppelin/hardhat-upgrades": "^1.22.1",
+    "dotenv": "^16.0.3",
     "ethers": "^5.7.2",
     "hardhat": "^2.13.0",
     "hardhat-deploy": "^0.11.25"
