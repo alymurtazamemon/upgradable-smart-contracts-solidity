@@ -36,7 +36,7 @@ async function deployAndUpgradeProxy() {
     console.log(`\nInitial Value is: ${value.toNumber()}`);
 
     console.log(`\nStoring the value 40 using V1.`);
-    const tx: ContractTransaction = await await proxy.store(40);
+    let tx: ContractTransaction = await await proxy.store(40);
     await tx.wait(1);
 
     const updateValueUsingV1: BigNumber = await proxy.retrieve();
@@ -68,11 +68,17 @@ async function deployAndUpgradeProxy() {
         "ImplementationV2 contract address: " + implementationV2Address
     );
 
-    version = await proxy.version();
+    version = await upgraded.version();
     console.log(`\nImplemenation Version is: ${version.toNumber()}`);
 
-    const valueInV2: BigNumber = await proxy.retrieve();
+    const valueInV2: BigNumber = await upgraded.retrieve();
     console.log(`\nInitial Value in V2 is: ${valueInV2.toNumber()}`);
+
+    tx = await upgraded.increment();
+    await tx.wait(1);
+
+    const incrementedValue: BigNumber = await upgraded.retrieve();
+    console.log(`\nIncremented Value is: ${incrementedValue.toNumber()}`);
 }
 
 deployAndUpgradeProxy()

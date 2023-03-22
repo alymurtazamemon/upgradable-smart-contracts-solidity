@@ -29,4 +29,10 @@ contract ImplementationV2 is Initializable {
     function version() public pure returns (uint256) {
         return 2;
     }
+
+    // Increments the stored value by 1
+    function increment() public {
+        _value = _value + 1;
+        emit ValueChanged(_value);
+    }
 }
