@@ -37,6 +37,9 @@ import { expect } from "chai";
 
           describe("After Updating to Implementation V2.", () => {
               beforeEach(async () => {
+                  const tx: ContractTransaction = await proxy.store(40);
+                  await tx.wait(1);
+
                   implementationV2 = await ethers.getContractFactory(
                       "ImplementationV2"
                   );
@@ -51,8 +54,8 @@ import { expect } from "chai";
                   version = await upgradedProxy.version();
                   expect(version).to.be.equal(2);
 
-                  //   const value = await upgradedProxy.retrieve();
-                  //   expect(value).to.be.equal(40);
+                  const value = await upgradedProxy.retrieve();
+                  expect(value).to.be.equal(40);
               });
 
               it("should increment the value from implementation V2.", async () => {
