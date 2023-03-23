@@ -3,8 +3,9 @@
 pragma solidity ^0.8.17;
 
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
-contract ImplementationV2 is Initializable {
+contract ImplementationV2 is Initializable, OwnableUpgradeable {
     uint256 private _value;
 
     // * Emitted when the stored value changes
@@ -31,7 +32,7 @@ contract ImplementationV2 is Initializable {
     }
 
     // Increments the stored value by 1
-    function increment() public {
+    function increment() public onlyOwner {
         _value = _value + 1;
         emit ValueChanged(_value);
     }
