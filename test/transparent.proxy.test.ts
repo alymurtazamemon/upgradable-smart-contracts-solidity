@@ -5,7 +5,7 @@ import { expect } from "chai";
 
 !developmentChains.includes(network.name)
     ? describe.skip
-    : describe("Proxy Unit Tests", function () {
+    : describe("Transparent Proxy Pattern - Unit Tests", function () {
           let implementationV1: ContractFactory;
           let implementationV2: ContractFactory;
           let proxy: Contract;
